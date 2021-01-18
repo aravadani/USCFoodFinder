@@ -1,18 +1,12 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var http = require('http');
-// var socketIO = require('socket.io');
-var routes = require('./src/routes/loginRoutes');
+const http = require('http');
+const port = process.env.PORT || 3000
 
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+  res.end('<h1>Hello World</h1>');
+});
 
-const app = express();
-var httpServer = http.Server(app);
-// var io = socketIO(httpServer);
-const PORT = 4000;
-app.use(express.static('public'));
-
-routes(app, __dirname);
-
-var server = app.listen(PORT, () => {
-    console.log(`server is listening on port ${server.address().port}`);
+server.listen(port,() => {
+  console.log(`Server running at port ` + port);
 });
